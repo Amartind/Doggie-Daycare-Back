@@ -1,4 +1,5 @@
 {
+
   "name": "doggie-daycare",
   "version": "1.0.0",
   "description": "",
@@ -16,4 +17,12 @@
     "url": "https://github.com/Amartind/Doggie-Daycare/issues"
   },
   "homepage": "https://github.com/Amartind/Doggie-Daycare#readme"
+
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^3.2.0"
+  }
+
 }
