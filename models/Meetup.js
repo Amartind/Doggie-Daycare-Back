@@ -9,11 +9,11 @@ Meetup.init({
         allowNull:false
     },
     lat:{
-        type: DataTypes.INT,
+        type: DataTypes.FLOAT,
         allowNull:false
     }, 
     lon:{
-        type: DataTypes.INT,
+        type: DataTypes.FLOAT,
         allowNull:false
     },
     date:{
