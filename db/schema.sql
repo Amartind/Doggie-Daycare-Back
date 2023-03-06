@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS doggieDates_db;
+DELETE DATABASE IF EXISTS daycare_db;
 
-CREATE DATABASE doggieDates_db;
+CREATE DATABASE daycare_db;
