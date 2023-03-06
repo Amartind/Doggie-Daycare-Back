@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/Amartind/Doggie-Daycare/issues"
   },
-  "homepage": "https://github.com/Amartind/Doggie-Daycare#readme"
+  "homepage": "https://github.com/Amartind/Doggie-Daycare#readme",
 
   "dependencies": {
     "bcrypt": "^5.1.0",

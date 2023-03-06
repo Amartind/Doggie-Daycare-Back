@@ -1,27 +1,28 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require("../config/connection")
 
-class Meetup extends Model {}
+class Meetup extends Model { }
 
 Meetup.init({
-    address:{
+    address: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false
     },
-    lat:{
+    lat: {
         type: DataTypes.FLOAT,
-        allowNull:false
-    }, 
-    lon:{
-        type: DataTypes.FLOAT,
-        allowNull:false
+        allowNull: false
     },
-    date:{
+    lon: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
+    date: {
         type: DataTypes.DATE,
-        allowNull:false
+        allowNull: false
     },
-},{
+}, {
     sequelize
 })
 
-module.exports=Meetup
+module.exports = Meetup
+
