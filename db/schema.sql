@@ -1,2 +1,3 @@
-DROP DATABASE IF EXISTS daycare_db;
-CREATE DATABASE  daycare_db;
+DELETE DATABASE IF EXISTS daycare_db;
+
+CREATE DATABASE daycare_db;
