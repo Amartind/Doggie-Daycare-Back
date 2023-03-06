@@ -1,19 +1,29 @@
 const express = require('express');
-const db = require('./config/connection');
-const routes = require('./routes');
+const allRoutes = require('./controllers');
+const sequelize = require('./config/connection');
 
 
-const PORT = process.env.PORT || 3001;
+// Sets up the Express App
+// =============================================================
 const app = express();
+const PORT = process.env.PORT || 3000;
+// Requiring our models for syncing
+const { variable} = require('./models');
 
 
+// Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(routes);
 
 
-db.once('open', () => {
-    app.listen(PORT, () => {
-        console.log(`API server running on port ${PORT}!`);
-    });
+app.use('/',allRoutes);
+
+app.get('/',(req,res)=>{
+res.send('hello welcome')
+})
+
+sequelize.sync({ force: true }).then(function() {
+app.listen(PORT, function() {
+console.log('App listening on PORT ' + PORT);
+});
 });
