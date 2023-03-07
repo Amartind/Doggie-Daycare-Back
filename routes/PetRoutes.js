@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
         })
 })
 
-// Get all 
+// Find all pets 
 router.get('/', (req, res) => {
 
     Pet.findAll({
@@ -45,7 +45,7 @@ router.put('/:id', (req, res) => {
     })
 });
 
-// Delet pet
+// Delete pet
 router.delete('/:id', (req, res) => {
     Pet.destroy({
         where: {
