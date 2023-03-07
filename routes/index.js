@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const petRoutes = require('./PetRoutes');
+const petRoutes = require('./petRoutes');
 // // const ownerRoutes = require('./ownerRoutes');
 // // const meetupRoutes= require('./meetupRoutes');
 

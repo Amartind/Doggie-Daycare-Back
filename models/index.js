@@ -13,7 +13,13 @@ User.hasMany(Meetup, {
 });
 Meetup.belongsTo(User, {
     onDelete: "CASCADE"
-})
+});
+Pet.hasMany(Meetup, {
+    onDelete: "CASCADE"
+});
+Meetup.belongsTo(Pet, {
+    onDelete: "CASCADE"
+});
 
 module.exports = {
     User,
