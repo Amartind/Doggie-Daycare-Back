@@ -1,19 +1,28 @@
-const Owner = require('./Owner');
+const User = require('./User');
 const Pet = require('./Pet');
 const Meetup = require('./Meetup');
 
-Owner.hasMany(Pet, {
+User.hasMany(Pet, {
     onDelete: "CASCADE"
 });
-Pet.belongsTo(Owner, {
+Pet.belongsTo(User, {
     onDelete: "CASCADE"
 });
-Meetup.belongsTo(Owner, {
+User.hasMany(Meetup, {
     onDelete: "CASCADE"
-})
+});
+Meetup.belongsTo(User, {
+    onDelete: "CASCADE"
+});
+Pet.hasMany(Meetup, {
+    onDelete: "CASCADE"
+});
+Meetup.belongsTo(Pet, {
+    onDelete: "CASCADE"
+});
 
 module.exports = {
-    Owner,
+    User,
     Pet,
     Meetup
 }
