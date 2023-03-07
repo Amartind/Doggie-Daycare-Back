@@ -22,10 +22,12 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   Pet.update(
     {
-      name: req.body.name,
-      age: req.body.age,
-      breed: req.body.breed,
-      personality: req.body.personality,
+        name: req.body.name,
+        gender: req.body.gender,
+        age: req.body.age,
+        personality_traits: req.body.personality_traits,
+        spayed_neutered: req.body.spayed_neutered,
+        vaccinated: req.body.vaccinated
     },
     {
       where: {
