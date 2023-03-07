@@ -1,11 +1,18 @@
 const router = require('express').Router();
-const { Pet, Owner } = require('../../models');
+const { Pet, User } = require('../models');
 
-// Get all 
+router.post('/', (req, res) => {
+    Pet.create(req.body)
+        .then(data => {
+            res.status(200).json(data)
+        })
+})
+
+// Find all pets 
 router.get('/', (req, res) => {
 
     Pet.findAll({
-        include: [Owner]
+        include: [User]
     }).then(data => {
         res.json(data)
     })
@@ -15,7 +22,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
     Pet.findByPk(req.params.id, {
-        include: [Owner]
+        include: [User]
     }).then(data => {
         res.json(data)
     })
@@ -26,11 +33,9 @@ router.put('/:id', (req, res) => {
 
     Pet.update({
         name: req.body.name,
-        gender: req.body.gender,
         age: req.body.age,
-        personality_traits: req.body.personality_traits,
-        spayed_neutered: req.body.spayed_neutered,
-        vaccinated: req.body.vaccinated
+        breed: req.body.breed,
+        personality: req.body.personality
     }, {
         where: {
             id: req.params.id
@@ -40,7 +45,7 @@ router.put('/:id', (req, res) => {
     })
 });
 
-// Delet pet
+// Delete pet
 router.delete('/:id', (req, res) => {
     Pet.destroy({
         where: {

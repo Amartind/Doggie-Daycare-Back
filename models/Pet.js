@@ -1,30 +1,34 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require("../config/connection")
 
+
 class Pet extends Model {}
 
+
 Pets.init({
-    name:{
+    name: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false
     },
-    age:{
+    age: {
         type: DataTypes.INTEGER,
-        allowNull:false
-    }, 
-    breed:{
-        type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false
     },
-    personality:{
+    breed: {
         type: DataTypes.STRING,
-        allowNull:false,
-        validate:{
-            isIn:[["traits1","traits2","traits3","traits4","traits5"]]
+        allowNull: false
+    },
+    personality: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isIn: [["traits1", "traits2", "traits3", "traits4", "traits5"]]
         }
     },
-},{
+}, {
     sequelize
 })
 
+
 module.exports=Pet
+
