@@ -23,7 +23,7 @@ Owner.init({
         },
     },
     phoneNumber:{
-        type: STRING,
+        type:DataTypes.STRING,
         allowNull: false,
         is: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
     },
@@ -47,4 +47,4 @@ Owner.init({
     }
 });
 
-module.exports=Owner;
+module.exports= Owner
