@@ -3,7 +3,7 @@ const sequelize = require("../config/connection")
 
 class Pet extends Model {}
 
-Pets.init({
+Pet.init({
     name:{
         type: DataTypes.STRING,
         allowNull:false
