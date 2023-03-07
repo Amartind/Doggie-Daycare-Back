@@ -9,6 +9,12 @@ Pet.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    gender:{
+        type: DataTypes.STRING,
+        validate: {
+            isIn: [["Male", "Female"]]
+        }
+    },
     age: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -24,6 +30,12 @@ Pet.init({
             isIn: [["traits1", "traits2", "traits3", "traits4", "traits5"]]
         }
     },
+    spayed_neutered:{
+        type: DataTypes.BOOLEAN
+    },
+    vaccinated:{
+        type: DataTypes.BOOLEAN
+    }
 }, {
     sequelize
 })

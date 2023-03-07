@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Owner, User } = require('../models');
+const { Owner, Pet } = require('../models');
 
 
 // Find all Owners
 router.get('/', (req, res) => {
     Owner.findAll({
-        inclued: [User]
+        inclued: [Pet]
     }).then(data => {
         res.json(data)
     })
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 // Find Owner by id
 router.get('/:id', (req, res) => {
     Owner.findByPk(req.params.id, {
-        include: [User]
+        include: [Pet]
     }).then(data => {
         res.json(data)
     })

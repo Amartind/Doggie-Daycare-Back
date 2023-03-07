@@ -5,12 +5,6 @@ const bcrypt = require("bcrypt");
 class Owner extends Model {}
 
 Owner.init({
-    id:{
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull:false,
-    },
     name:{
         type: DataTypes.STRING,
         allowNull:false,
