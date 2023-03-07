@@ -1,20 +1,13 @@
 const router = require('express').Router();
-const { Pet, User } = require('../models');
+const { Pet, Owner } = require('../../models');
 
-router.post('/', (req, res) => {
-    Pet.create(req.body)
-        .then((createPet) => {
-            res.status(200).json(createPet)
-        })
-})
-
-// Find all pets 
+// Get all 
 router.get('/', (req, res) => {
 
     Pet.findAll({
-        include: [User]
-    }).then((petData) => {
-        res.json(petData)
+        include: [Owner]
+    }).then(data => {
+        res.json(data)
     })
 });
 
@@ -22,9 +15,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
     Pet.findByPk(req.params.id, {
-        include: [User]
-    }).then((petData) => {
-        res.json(petData)
+        include: [Owner]
+    }).then(data => {
+        res.json(data)
     })
 });
 
@@ -33,29 +26,29 @@ router.put('/:id', (req, res) => {
 
     Pet.update({
         name: req.body.name,
+        gender: req.body.gender,
         age: req.body.age,
-        breed: req.body.breed,
-        personality: req.body.personality
+        personality_traits: req.body.personality_traits,
+        spayed_neutered: req.body.spayed_neutered,
+        vaccinated: req.body.vaccinated
     }, {
         where: {
             id: req.params.id
         }
-    }).then((updatedPet) => {
-        res.json(updatedPet)
+    }).then(data => {
+        res.json('Pet has been updated ')
     })
-        .catch((err) => res.json(err));
 });
 
-// Delete pet
+// Delet pet
 router.delete('/:id', (req, res) => {
     Pet.destroy({
         where: {
             id: req.params.id
         }
-    }).then((deletedPet) => {
-        res.json(deletedPet)
+    }).then(data => {
+        res.json('Pet has been deleted')
     })
-        .catch((err) => res.json(err));
 });
 
 module.exports = router;

@@ -4,11 +4,16 @@ const sequelize = require("../config/connection")
 
 class Pet extends Model {}
 
-
-Pets.init({
-    name: {
+Pet.init({
+    name:{
         type: DataTypes.STRING,
         allowNull: false
+    },
+    gender:{
+        type: DataTypes.STRING,
+        validate: {
+            isIn: [["Male", "Female"]]
+        }
     },
     age: {
         type: DataTypes.INTEGER,
@@ -25,6 +30,12 @@ Pets.init({
             isIn: [["traits1", "traits2", "traits3", "traits4", "traits5"]]
         }
     },
+    spayed_neutered:{
+        type: DataTypes.BOOLEAN
+    },
+    vaccinated:{
+        type: DataTypes.BOOLEAN
+    }
 }, {
     sequelize
 })

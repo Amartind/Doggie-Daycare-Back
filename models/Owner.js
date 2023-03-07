@@ -5,12 +5,6 @@ const bcrypt = require("bcrypt");
 class Owner extends Model {}
 
 Owner.init({
-    id:{
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull:false,
-    },
     name:{
         type: DataTypes.STRING,
         allowNull:false,
@@ -23,7 +17,7 @@ Owner.init({
         },
     },
     phoneNumber:{
-        type: STRING,
+        type:DataTypes.STRING,
         allowNull: false,
         is: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
     },
@@ -47,4 +41,4 @@ Owner.init({
     }
 });
 
-module.exports=Owner;
+module.exports= Owner
