@@ -28,3 +28,6 @@ Pets.init({
 })
 
 module.exports = Pets
+
+module.exports = Pets
+module.exports = Pets
