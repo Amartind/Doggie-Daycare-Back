@@ -1,17 +1,17 @@
-const User = require('./User');
+const Owner = require('./Owner');
 const Pet = require('./Pet');
 const Meetup = require('./Meetup');
 
-User.hasMany(Pet, {
+Owner.hasMany(Pet, {
     onDelete: "CASCADE"
 });
-Pet.belongsTo(User, {
+Pet.belongsTo(Owner, {
     onDelete: "CASCADE"
 });
-User.hasMany(Meetup, {
+Owner.hasMany(Meetup, {
     onDelete: "CASCADE"
 });
-Meetup.belongsTo(User, {
+Meetup.belongsTo(Owner, {
     onDelete: "CASCADE"
 });
 Pet.hasMany(Meetup, {
@@ -22,7 +22,7 @@ Meetup.belongsTo(Pet, {
 });
 
 module.exports = {
-    User,
+    Owner,
     Pet,
     Meetup
 }

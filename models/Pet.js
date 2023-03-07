@@ -4,14 +4,8 @@ const sequelize = require("../config/connection")
 
 class Pet extends Model {}
 
-<<<<<<< HEAD
 Pet.init({
     name:{
-=======
-
-Pets.init({
-    name: {
->>>>>>> c03f143e4baaf52d2199962987c8fdc915929492
         type: DataTypes.STRING,
         allowNull: false
     },
