@@ -1,43 +1,43 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, TEXT } = require('sequelize');
 const sequelize = require("../config/connection");
 const bcrypt = require("bcrypt");
 
-class User extends Model {}
+class User extends Model { }
 
 User.init({
-    id:{
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull:false,
+        allowNull: false,
     },
-    name:{
+    name: {
         type: DataTypes.STRING,
-        allowNull:false,
-    }, 
+        allowNull: false,
+    },
     emailAddress:
     {
-        type:DataTypes.STRING,
+        type: DataTypes.STRING,
         validate: {
             isEmail: true,
         },
     },
-    phoneNumber:{
-        type: STRING,
+    phoneNumber: {
+        type: DataTypes.STRING,
         allowNull: false,
         is: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
     },
-    userName:{
-        type:DataTypes.STRING,
+    userName: {
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
-    password:{
-        type: DataTypes.STRING,
-        allowNull:false,
+    password: {
+        type: DataTypes.TEXT,
+        allowNull: false,
 
     },
-},{
+}, {
     sequelize,
     hooks: {
         beforeCreate: userObj => {
@@ -47,4 +47,4 @@ User.init({
     }
 });
 
-module.exports=User;
+module.exports = User;
