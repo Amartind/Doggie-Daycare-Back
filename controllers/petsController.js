@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Pet, Owner } = require('../../models');
+const { Pet, Owner } = require('../models');
 
 // Get all 
 router.get('/', (req, res) => {
@@ -13,12 +13,14 @@ router.get('/', (req, res) => {
 
 // Find pet by id
 router.get('/:id', (req, res) => {
+    if(session.Owner.id==Pet.Owner.id){
 
-    Pet.findByPk(req.params.id, {
-        include: [Owner]
-    }).then(data => {
-        res.json(data)
-    })
+        Pet.findByPk(req.params.id, {
+            include: [Owner]
+        }).then(data => {
+            res.json(data)
+        })
+    } else return res.status(401).html("No Access")
 });
 
 //Update pet 
@@ -28,7 +30,8 @@ router.put('/:id', (req, res) => {
         name: req.body.name,
         gender: req.body.gender,
         age: req.body.age,
-        personality_traits: req.body.personality_traits,
+        breed: req.body.breed,
+        personality: req.body.personality,
         spayed_neutered: req.body.spayed_neutered,
         vaccinated: req.body.vaccinated
     }, {
