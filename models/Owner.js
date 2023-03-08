@@ -9,19 +9,19 @@ Owner.init({
         type: DataTypes.STRING,
         allowNull:false,
     }, 
-    emailAddress:
+    email:
     {
         type:DataTypes.STRING,
         validate: {
             isEmail: true,
         },
     },
-    phoneNumber:{
+    phone:{
         type:DataTypes.STRING,
         allowNull: false,
         is: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
     },
-    userName:{
+    username:{
         type:DataTypes.STRING,
         allowNull: false,
         unique: true,
