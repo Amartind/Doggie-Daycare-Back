@@ -5,11 +5,15 @@ const owners = [
     {
         name: 'John Smith',
         email: 'john.smith@example.com',
+        phone: "123456789",
+        username: "JohnSmith",
         password: 'password123'
     },
     {
         name: 'Jane Doe',
         email: 'jane.doe@example.com',
+        phone: "123456789",
+        username: "JaneDoe",
         password: 'password456'
     }
 ];
