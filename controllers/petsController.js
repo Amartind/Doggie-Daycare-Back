@@ -1,19 +1,21 @@
 const router = require('express').Router();
+const jwt = require('jsonwebtoken');
 const { Pet, Owner } = require('../models');
 const jwt = require('jsonwebtoken')
 
 // Get all 
 router.get('/', (req, res) => {
 
-    Pet.findAll({
-        include: [Owner]
-    }).then(data => {
-        res.json(data)
-    })
+  Pet.findAll({
+    include: [Owner]
+  }).then(data => {
+    res.json(data)
+  })
 });
 
 // Find pet by id
 router.get('/:id', (req, res) => {
+
 
         Pet.findByPk(req.params.id, {
             include: [Owner]
@@ -144,6 +146,7 @@ router.delete('/:id', (req, res) => {
     return res.status(403).json({msg:"Invalid token"})
   }
     
+
 });
 
 module.exports = router;
