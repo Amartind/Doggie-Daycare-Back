@@ -56,25 +56,10 @@ router.post("/", (req, res) => {
   // }
 });
 
-// checks for a valid JWT token 
-const auth = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) {
-    return res.status(401).json({ msg: "Authorization denied. Token is missing." });
-  }
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    console.error(err);
-    res.status(401).json({ msg: "Authorization denied. Token is invalid." });
-  }
-};
 
 
 // Update pet PROTECTED
-router.put('/:id', auth, (req, res) => {
+router.put('/:id', (req, res) => {
   Pet.update({
     name: req.body.name,
     gender: req.body.gender,
@@ -91,7 +76,6 @@ router.put('/:id', auth, (req, res) => {
     res.json('Pet has been updated ')
   })
 });
-
 
 // Delete pet PROTECTED
 router.delete('/:id', (req, res) => {
