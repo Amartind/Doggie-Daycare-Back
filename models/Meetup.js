@@ -8,13 +8,8 @@ Meetup.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    lat: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-    },
-    lon: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    placeId: {
+        type: DataTypes.STRING,
     },
     date: {
         type: DataTypes.DATE,
