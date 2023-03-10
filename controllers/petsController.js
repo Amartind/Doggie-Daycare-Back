@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const { Pet, Owner } = require('../models');
-const jwt = require('jsonwebtoken')
 
 // Get all 
 router.get('/', (req, res) => {
@@ -31,7 +30,6 @@ router.post("/", (req, res) => {
   if (!token){
     return res.status(403).json({msg:"You must be logged in"})
   }
-  try{
     const tokenData = jwt.verify(token, process.env.JWT_SECRET)
     Pet.create({
       name: req.body.name,
@@ -41,10 +39,10 @@ router.post("/", (req, res) => {
       personality: req.body.personality,
       spayed_neutered: req.body.spayed_neutered,
       vaccinated: req.body.vaccinated,
-      UserId: tokenData.id
+      OwnerId: tokenData.id
     })
       .then((newPet) => {
-        res.json(newPet);
+        res.json({msg: "New pet created", newPet});
       })
       .catch((err) => {
         console.log(err);
@@ -53,11 +51,7 @@ router.post("/", (req, res) => {
           err,
         });
       });
-    res.json(tokenData)
-  }catch (err){
-    return res.status(403).json({msg:"Invalid token"})
-  }    
-});
+    });
 
 // Update pet PROTECTED
 router.put('/:id', (req, res) => {
@@ -65,13 +59,12 @@ router.put('/:id', (req, res) => {
   if (!token){
     return res.status(403).json({msg:"You must be logged in"})
   }
-  try{
     const tokenData = jwt.verify(token, process.env.JWT_SECRET)
     Pet.findByPk(req.params.id).then(foundPet=>{
       if(!foundPet){
         return res.status(404).json({msg:"No such pet"})
       }
-      if(foundPet.UserId!==tokenData.id){
+      if(foundPet.OwnerId!==tokenData.id){
         return res.status(403).json({msg:"Unauthorized access"})
       }
       Pet.update({
@@ -81,7 +74,8 @@ router.put('/:id', (req, res) => {
         breed: req.body.breed,
         personality: req.body.personality,
         spayed_neutered: req.body.spayed_neutered,
-        vaccinated: req.body.vaccinated
+        vaccinated: req.body.vaccinated,
+        // OwnerId: tokenData.id
         }, {
         where: {
             id: req.params.id
@@ -95,16 +89,7 @@ router.put('/:id', (req, res) => {
         err,
       });
       });
-    }).catch((err) =>{
-      console.log(err);
-      res.status(500).json({msg:"Couldn't find the pet", err})
     })
-    
-    res.json(tokenData)
-  }catch (err){
-    return res.status(403).json({msg:"Invalid token"})
-  }
-    
 });
 
 
@@ -114,13 +99,12 @@ router.delete('/:id', (req, res) => {
   if (!token){
     return res.status(403).json({msg:"You must be logged in"})
   }
-  try{
     const tokenData = jwt.verify(token, process.env.JWT_SECRET)
     Pet.findByPk(req.params.id).then(foundPet=>{
       if(!foundPet){
         return res.status(404).json({msg:"No such pet"})
       }
-      if(foundPet.UserId!==tokenData.id){
+      if(foundPet.OwnerId!==tokenData.id){
         return res.status(403).json({msg:"Unauthorized access"})
       }
       Pet.destroy({
@@ -136,17 +120,7 @@ router.delete('/:id', (req, res) => {
         err,
       });
       });
-    }).catch((err) =>{
-      console.log(err);
-      res.status(500).json({msg:"Couldn't find the pet", err})
     })
-    
-    res.json(tokenData)
-  }catch (err){
-    return res.status(403).json({msg:"Invalid token"})
-  }
-    
-
 });
 
 module.exports = router;
