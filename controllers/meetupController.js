@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 });
 
 // create a meetup PROTECTED
-router.post("/", verifyToken, (req, res) => {
+router.post("/", (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
     return res.status(403).json({ msg: "You must be logged in" })
@@ -61,7 +61,7 @@ router.post("/", verifyToken, (req, res) => {
 });
 
 // Update Meetup PROTECTED
-router.put('/:id', verifyToken, (req, res) => {
+router.put('/:id', (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
     return res.status(403).json({ msg: "You must be logged in" })
@@ -101,7 +101,7 @@ router.put('/:id', verifyToken, (req, res) => {
 
 
 // Delete Meetup PROTECTED
-router.delete('/:id', verifyToken, (req, res) => {
+router.delete('/:id', (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
     return res.status(403).json({ msg: "You must be logged in" })
