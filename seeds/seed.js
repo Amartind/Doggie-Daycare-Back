@@ -22,14 +22,22 @@ const owners = [
 const pets = [
     {
         name: 'Max',
-        breed: 'Golden Retriever',
+        gender: 'male',
         age: 2,
+        breed: 'Golden Retriever',
+        peronality: "traits4",
+        spayed_neutered: true,
+        vaccinated: true,
         owner_id: 1 // Belongs to John Smith
     },
     {
         name: 'Bella',
-        breed: 'Labrador Retriever',
+        gender: 'female',
         age: 4,
+        breed: 'Labrador Retriever',
+        personality: 'trait2',
+        spayed_neutered: true,
+        vaccinated: true,
         owner_id: 2 // Belongs to Jane Doe
     }
 ];
@@ -37,17 +45,17 @@ const pets = [
 // Meetups
 const meetups = [
     {
-        name: 'Dog park playdate',
-        location: 'Central Park',
-        datetime: '2023-03-15 10:00:00',
-        description: 'Bring your furry friends for a fun morning at the dog park!',
+        address: 'Central Park',
+        // lat: 0.1234,
+        // long:0.24567,
+        date: '2023-03-15 10:00:00',
         owner_id: 1 // Hosted by John Smith
     },
     {
-        name: 'Puppy training session',
-        location: 'Petco',
-        datetime: '2023-03-20 14:00:00',
-        description: 'Learn how to train your new puppy with professional trainers.',
+        address: 'Petco',
+        // lat:
+        // lon:
+        date: '2023-03-20 14:00:00',
         owner_id: 2 // Hosted by Jane Doe
     }
 ];
