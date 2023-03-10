@@ -29,7 +29,12 @@ Owner.init({
     password:{
         type: DataTypes.STRING,
         allowNull:false,
-
+    },
+    address: {
+        type: DataTypes.STRING,
+    },
+    placeId: {
+        type: DataTypes.STRING,
     },
 },{
     sequelize,
