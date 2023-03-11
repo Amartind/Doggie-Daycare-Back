@@ -60,7 +60,7 @@ const meetups = [
     {
         name: 'Puppy training session',
         location: 'Petco',
-        datetime: '2023-03-20 14:00:00',
+        dateTime: '2023-03-20 14:00:00',
         description: 'Learn how to train your new puppy with professional trainers.',
         address: "860 Broadway, New York, NY 10003",
         placeId: "ChIJNe8lF6JZwokRu1tZE7qbWIY",
