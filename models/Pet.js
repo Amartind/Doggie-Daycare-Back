@@ -28,7 +28,8 @@ Pet.init({
         allowNull: false,
         validate: {
             isIn: [["traits1", "traits2", "traits3", "traits4", "traits5"]]
-        }
+        },
+        defaultValue: "traits1",
     },
     spayed_neutered:{
         type: DataTypes.BOOLEAN
