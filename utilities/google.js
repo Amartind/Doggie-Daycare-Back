@@ -3,16 +3,21 @@ const escapeHTML = require("escape-html");
 const fetch = require("node-fetch");
 
 
-const validateAddress = async function (addressObject) {
+const validateAddress = async function (ownerAddress) {
+    console.log(ownerAddress);
+    let apiUrl = `https://addressvalidation.googleapis.com/v1:validateAddress?key=${googleApiKey}`
     let reply = {
         validatedAddress: "",
         placeId: ""
     }
-    let apiUrl = `https://addressvalidation.googleapis.com/v1:validateAddress?key=${googleApiKey}`
-    addressObject.regionCode = "US";
+    let addressObject = {
+        regionCode: "US",
+        addressLines: ownerAddress
+    }
     const body = {
         address: addressObject
     };
+    console.log(body);
     const response = await fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify(body),
@@ -21,12 +26,13 @@ const validateAddress = async function (addressObject) {
         }
     });
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     if (response.status === 200) {
         if (data.result.verdict.validationGranularity === "PREMISE") {
             reply.validatedAddress = data.result.address.formattedAddress;
             reply.placeId = data.result.geocode.placeId;
             console.log(reply);
+            return reply;
         } else {
             console.log(data.result.address.missingComponentTypes);
         }
@@ -60,13 +66,13 @@ module.exports = {
 }
 
 
-const myAddress = {
-    administrativeArea: "OH",
-    locality: "Columbus",
-    postalCode: "43214",
-    addressLines: "5142 North High Street, Apt 212"
-};
-const placeIdOne = "ChIJXa11XvSrmlQR_IzMkY63fe4";
-const placeIdTwo = "Ejw1MTQyIE5vcnRoIEhpZ2ggU3RyZWV0IEFwdCAyMTIsIENvbHVtYnVzLCBPSCA0MzIxNC0xNTQ2LCBVU0EiHxodChYKFAoSCeF-PF-BjTiIEavdy1eQr6WREgMyMTI";
-validateAddress(myAddress);
-getDistance(placeIdOne, placeIdTwo);
+// const myAddress = {
+//     administrativeArea: "OH",
+//     locality: "Columbus",
+//     postalCode: "43214",
+//     addressLines: "5142 North High Street, Apt 212"
+// };
+// const placeIdOne = "ChIJXa11XvSrmlQR_IzMkY63fe4";
+// const placeIdTwo = "Ejw1MTQyIE5vcnRoIEhpZ2ggU3RyZWV0IEFwdCAyMTIsIENvbHVtYnVzLCBPSCA0MzIxNC0xNTQ2LCBVU0EiHxodChYKFAoSCeF-PF-BjTiIEavdy1eQr6WREgMyMTI";
+// validateAddress(myAddress);
+// getDistance(placeIdOne, placeIdTwo);

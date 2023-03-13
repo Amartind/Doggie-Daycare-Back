@@ -5,20 +5,18 @@ const owners = [
     {
         name: 'John Smith',
         email: 'john.smith@example.com',
-        phone: "123456789",
+        phone: "14255555555",
         username: "JohnSmith",
         password: 'password123',
         address: "20 West 34th St., New York, NY 10001",
-        placeId: "ChIJr92XCKlZwokRIy2j_7Rb2V8",
     },
     {
         name: 'Jane Doe',
         email: 'jane.doe@example.com',
-        phone: "123456789",
+        phone: "12065555555",
         username: "JaneDoe",
         password: 'password456',
         address: "461 W 47th St, New York, NY 10036",
-        placeId: "ChIJMyaNolFYwokRBVksM1l4aWM",
     }
 ];
 
