@@ -29,7 +29,7 @@ const pets = [
         gender: 'Male',
         age: 2,
         breed: 'Golden Retriever',
-        personality:["traits1", "trait2"],
+        personality:["traits1"],
         spayed_neutered: true,
         vaccinated: true,
         OwnerId: 1
@@ -40,7 +40,7 @@ const pets = [
         gender: 'Female',
         age: 4,
         breed: 'Labrador Retriever',
-        personality:["traits3", "trait4"],
+        personality:["traits3"],
         spayed_neutered: true,
         vaccinated: true,
         OwnerId: 2 
