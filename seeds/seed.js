@@ -17,6 +17,14 @@ const owners = [
         username: "JaneDoe",
         password: 'password456',
         address: "461 W 47th St, New York, NY 10036",
+    },
+    {
+        name: "Jason Arter",
+        email: "jason.arter@gmail.com",
+        phone: "14252138878",
+        username: "error201",
+        password: "brandonblt",
+        address: "2030 116th Dr SE, Lake Stevens, WA 98258"
     }
 ];
 
@@ -30,8 +38,7 @@ const pets = [
         personality:["traits1"],
         spayed_neutered: true,
         vaccinated: true,
-        OwnerId: 1
-        // Belongs to John Smith
+        OwnerId: 1, // Belongs to John Smith
     },
     {
         name: 'Bella',
@@ -41,8 +48,16 @@ const pets = [
         personality:["traits3"],
         spayed_neutered: true,
         vaccinated: true,
-        OwnerId: 2 
-        // Belongs to Jane Doe
+        OwnerId: 2, // Belongs to Jane Doe
+    },
+    {
+        name: "Laney",
+        gender: "Female",
+        age: 5,
+        breed: "Cavalier King Charles Spaniel",
+        spayed_neutered: true,
+        vaccinated: true,
+        OwnerId: 3, // Belongs to Jason Arter
     }
 ];
 
@@ -63,6 +78,14 @@ const meetups = [
         address: "860 Broadway, New York, NY 10003",
         OwnerId: 2, // Hosted by Jane Doe
         PetId: 2
+    },
+    {
+        name: 'God Frolick',
+        dateTime: '2023-03-20 12:30:00',
+        description: "Let's just let the dogs run around!",
+        address: "6046 West Lake Sammamish Pkwy NE, Redmond, WA 98052",
+        OwnerId: 3, // Hosted by Jason Arter
+        PetId: 3
     }
 ];
 

@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const Owner = require('../models/Owner');
 const Pet = require('../models/Pet');
 const Meetup = require('../models/Meetup');
+const { getDistance } = require('../utilities/google');
+
 
 // Find all Meetups
 router.get('/', (req, res) => {
@@ -28,6 +30,33 @@ router.get('/:id', (req, res) => {
     ]
   }).then((meetupData) => {
     res.json(meetupData);
+  });
+});
+
+// Find meetups within a certain radius of the user.
+router.get('/:userName/:radius', (req, res) => {
+  let ownerLocation;
+  let calculatedResult = []
+  Owner.findOne({
+    where: {
+      username: req.params.userName
+    }}).then((ownerData) => {
+      ownerLocation = ownerData.placeId;
+    })
+  Meetup.findAll({
+    include: [
+      { model: Pet },
+      { model: Owner }
+    ]
+  }).then(async (meetUpData) => {
+    for (const meetup of meetUpData){
+      meetupLocation = meetup.dataValues.placeId
+      meetup.dataValues.distance = await getDistance(ownerLocation, meetupLocation)
+      if (meetup.dataValues.distance <= parseFloat(req.params.radius)){
+        calculatedResult.push(meetup);
+      }
+    }
+    res.json(calculatedResult);
   });
 });
 
