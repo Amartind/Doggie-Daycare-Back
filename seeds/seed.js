@@ -57,7 +57,7 @@ const meetups = [
         description: 'Bring your furry friends for a fun morning at the dog park!',
         address: "Central Park, New York, NY 10024",
         placeId: "ChIJHa5fkWJYwokR_psiHLKKLQg",
-        owner_id: 1 // Hosted by John Smith
+        Ownerid: 1 // Hosted by John Smith
     },
     {
         name: 'Puppy training session',
@@ -66,7 +66,7 @@ const meetups = [
         description: 'Learn how to train your new puppy with professional trainers.',
         address: "860 Broadway, New York, NY 10003",
         placeId: "ChIJNe8lF6JZwokRu1tZE7qbWIY",
-        owner_id: 2 // Hosted by Jane Doe
+        Ownerid: 2 // Hosted by Jane Doe
     }
 ];
 
