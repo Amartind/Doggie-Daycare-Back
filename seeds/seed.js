@@ -26,23 +26,25 @@ const owners = [
 const pets = [
     {
         name: 'Max',
-        breed: 'Golden Retriever',
+        gender: 'Male',
         age: 2,
-        gender: "Male",
+        breed: 'Golden Retriever',
+        personality:["traits1", "trait2"],
         spayed_neutered: true,
         vaccinated: true,
-        traits: "traits1",
-        owner_id: 1 // Belongs to John Smith
+        Ownerid: 1
+        // Belongs to John Smith
     },
     {
         name: 'Bella',
-        breed: 'Labrador Retriever',
+        gender: 'Female',
         age: 4,
-        gender: "Female",
+        breed: 'Labrador Retriever',
+        personality:["traits3", "trait4"],
         spayed_neutered: true,
         vaccinated: true,
-        traits: "traits2",
-        owner_id: 2 // Belongs to Jane Doe
+        Ownerid: 2 
+        // Belongs to Jane Doe
     }
 ];
 
@@ -55,7 +57,7 @@ const meetups = [
         description: 'Bring your furry friends for a fun morning at the dog park!',
         address: "Central Park, New York, NY 10024",
         placeId: "ChIJHa5fkWJYwokR_psiHLKKLQg",
-        owner_id: 1 // Hosted by John Smith
+        Ownerid: 1 // Hosted by John Smith
     },
     {
         name: 'Puppy training session',
@@ -64,7 +66,7 @@ const meetups = [
         description: 'Learn how to train your new puppy with professional trainers.',
         address: "860 Broadway, New York, NY 10003",
         placeId: "ChIJNe8lF6JZwokRu1tZE7qbWIY",
-        owner_id: 2 // Hosted by Jane Doe
+        Ownerid: 2 // Hosted by Jane Doe
     }
 ];
 

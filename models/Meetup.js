@@ -19,7 +19,7 @@ Meetup.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    placeId: {
+    location: {
         type: DataTypes.STRING,
     },
 }, {

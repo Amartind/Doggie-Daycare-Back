@@ -8,7 +8,7 @@ const { Owner, Pet } = require("../models");
 // Find all Owners
 router.get("/", (req, res) => {
   Owner.findAll({
-    inclued: [Pet],
+    include: [Pet],
   }).then((data) => {
     res.json(data);
   });
