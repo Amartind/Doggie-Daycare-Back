@@ -7,14 +7,18 @@ const owners = [
         email: 'john.smith@example.com',
         phone: "123456789",
         username: "JohnSmith",
-        password: 'password123'
+        password: 'password123',
+        address: "20 West 34th St., New York, NY 10001",
+        placeId: "ChIJr92XCKlZwokRIy2j_7Rb2V8",
     },
     {
         name: 'Jane Doe',
         email: 'jane.doe@example.com',
         phone: "123456789",
         username: "JaneDoe",
-        password: 'password456'
+        password: 'password456',
+        address: "461 W 47th St, New York, NY 10036",
+        placeId: "ChIJMyaNolFYwokRBVksM1l4aWM",
     }
 ];
 
@@ -49,15 +53,19 @@ const meetups = [
     {
         name: 'Dog park playdate',
         location: 'Central Park',
-        datetime: '2023-03-15 10:00:00',
+        dateTime: '2023-03-15 10:00:00',
         description: 'Bring your furry friends for a fun morning at the dog park!',
+        address: "Central Park, New York, NY 10024",
+        placeId: "ChIJHa5fkWJYwokR_psiHLKKLQg",
         owner_id: 1 // Hosted by John Smith
     },
     {
         name: 'Puppy training session',
         location: 'Petco',
-        datetime: '2023-03-20 14:00:00',
+        dateTime: '2023-03-20 14:00:00',
         description: 'Learn how to train your new puppy with professional trainers.',
+        address: "860 Broadway, New York, NY 10003",
+        placeId: "ChIJNe8lF6JZwokRu1tZE7qbWIY",
         owner_id: 2 // Hosted by Jane Doe
     }
 ];

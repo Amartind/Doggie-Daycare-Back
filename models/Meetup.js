@@ -4,19 +4,22 @@ const sequelize = require("../config/connection")
 class Meetup extends Model { }
 
 Meetup.init({
-    name: {
+    name:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
-    location: {
-        type: DataTypes.STRING,
-        allowNull:false
-    },
-    datetime: {
+    dateTime: {
         type: DataTypes.DATE,
         allowNull: false
     },
     description: {
+        type:DataTypes.STRING,
+    },
+    address: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    location: {
         type: DataTypes.STRING,
     },
 }, {

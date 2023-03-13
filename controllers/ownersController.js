@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 const { Owner, Pet } = require("../models");
+
 
 // Find all Owners
 router.get("/", (req, res) => {
@@ -53,7 +55,7 @@ router.post("/", (req, res) => {
 });
 
 // login
-router.post("/login", (req, res) => {
+router.post("/login", cors(), (req, res) => {
   Owner.findOne({
     where: {
       username: req.body.username,
