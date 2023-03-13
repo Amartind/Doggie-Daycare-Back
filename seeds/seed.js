@@ -32,7 +32,7 @@ const pets = [
         personality:["traits1", "trait2"],
         spayed_neutered: true,
         vaccinated: true,
-        Owner: 1
+        OwnerId: 1
         // Belongs to John Smith
     },
     {
@@ -43,7 +43,7 @@ const pets = [
         personality:["traits3", "trait4"],
         spayed_neutered: true,
         vaccinated: true,
-        Owner: 2 
+        OwnerId: 2 
         // Belongs to Jane Doe
     }
 ];
@@ -57,7 +57,7 @@ const meetups = [
         description: 'Bring your furry friends for a fun morning at the dog park!',
         address: "Central Park, New York, NY 10024",
         placeId: "ChIJHa5fkWJYwokR_psiHLKKLQg",
-        Owner: 1 // Hosted by John Smith
+        OwnerId: 1 // Hosted by John Smith
     },
     {
         name: 'Puppy training session',
@@ -66,7 +66,7 @@ const meetups = [
         description: 'Learn how to train your new puppy with professional trainers.',
         address: "860 Broadway, New York, NY 10003",
         placeId: "ChIJNe8lF6JZwokRu1tZE7qbWIY",
-        Owner: 2 // Hosted by Jane Doe
+        OwnerId: 2 // Hosted by Jane Doe
     }
 ];
 
