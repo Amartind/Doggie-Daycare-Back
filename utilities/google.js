@@ -4,7 +4,6 @@ const fetch = require("node-fetch");
 
 
 const validateAddress = async function (ownerAddress) {
-    console.log(ownerAddress);
     let apiUrl = `https://addressvalidation.googleapis.com/v1:validateAddress?key=${googleApiKey}`
     let reply = {
         validatedAddress: "",
@@ -17,7 +16,6 @@ const validateAddress = async function (ownerAddress) {
     const body = {
         address: addressObject
     };
-    console.log(body);
     const response = await fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify(body),
@@ -34,10 +32,10 @@ const validateAddress = async function (ownerAddress) {
             console.log(reply);
             return reply;
         } else {
-            console.log(data.result.address.missingComponentTypes);
-        }
-        if (data.result.address.missingComponentTypes){
-            console.log(data.result.address.missingComponentTypes);
+            reply.validatedAddress = data.result.address.formattedAddress;
+            reply.placeId = data.result.geocode.placeId;
+            console.log(reply);
+            return reply;
         }
     } else {
         console.log(response.status);

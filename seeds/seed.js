@@ -50,21 +50,19 @@ const pets = [
 const meetups = [
     {
         name: 'Dog park playdate',
-        location: 'Central Park',
         dateTime: '2023-03-15 10:00:00',
         description: 'Bring your furry friends for a fun morning at the dog park!',
         address: "Central Park, New York, NY 10024",
-        placeId: "ChIJHa5fkWJYwokR_psiHLKKLQg",
-        OwnerId: 1 // Hosted by John Smith
+        OwnerId: 1, // Hosted by John Smith
+        PetId: 1
     },
     {
         name: 'Puppy training session',
-        location: 'Petco',
         dateTime: '2023-03-20 14:00:00',
         description: 'Learn how to train your new puppy with professional trainers.',
         address: "860 Broadway, New York, NY 10003",
-        placeId: "ChIJNe8lF6JZwokRu1tZE7qbWIY",
-        OwnerId: 2 // Hosted by Jane Doe
+        OwnerId: 2, // Hosted by Jane Doe
+        PetId: 2
     }
 ];
 

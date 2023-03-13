@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
-const sequelize = require("../config/connection")
+const sequelize = require("../config/connection");
+const { validateAddress } = require('../utilities/google');
 
 class Meetup extends Model { }
 
@@ -23,7 +24,20 @@ Meetup.init({
         type: DataTypes.STRING,
     },
 }, {
-    sequelize
+    sequelize,
+    hooks: {
+        beforeCreate: async meetupObj => {
+            const location = await validateAddress(meetupObj.address);
+            meetupObj.placeId = location.placeId;
+            return meetupObj;
+        },
+        beforeBulkCreate: async meetupObj => {
+            for (const meetup of meetupObj){
+                const location = await validateAddress(meetup.address);
+                meetup.placeId = location.placeId;
+            }
+        }
+    }
 })
 
 module.exports = Meetup
