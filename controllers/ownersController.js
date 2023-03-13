@@ -31,6 +31,7 @@ router.post("/", (req, res) => {
     phone: req.body.phone,
     username: req.body.username,
     password: req.body.password,
+    address: req.body.address
   })
     .then((newOwner) => {
       const token = jwt.sign(
