@@ -22,15 +22,25 @@ const owners = [
 const pets = [
     {
         name: 'Max',
-        breed: 'Golden Retriever',
+        gender: 'Male',
         age: 2,
-        owner_id: 1 // Belongs to John Smith
+        breed: 'Golden Retriever',
+        personality:["traits1", "trait2"],
+        spayed_neutered: true,
+        vaccinated: true,
+        Ownerid: 1
+        // Belongs to John Smith
     },
     {
         name: 'Bella',
-        breed: 'Labrador Retriever',
+        gender: 'Female',
         age: 4,
-        owner_id: 2 // Belongs to Jane Doe
+        breed: 'Labrador Retriever',
+        personality:["traits3", "trait4"],
+        spayed_neutered: true,
+        vaccinated: true,
+        Ownerid: 2 
+        // Belongs to Jane Doe
     }
 ];
 
