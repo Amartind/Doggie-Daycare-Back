@@ -5,7 +5,7 @@ const ownersRoutes = require("./ownersController")
 router.use("/api/owners",ownersRoutes)
 
 const meetupRoutes = require("./meetupController")
-router.use("/api/meetup",meetupRoutes)
+router.use("/api/meetups",meetupRoutes)
 
 const petsRoutes = require("./petsController")
 router.use("/api/pets",petsRoutes)

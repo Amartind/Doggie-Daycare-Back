@@ -24,17 +24,14 @@ const validateAddress = async function (ownerAddress) {
         }
     });
     const data = await response.json();
-    console.log(data);
     if (response.status === 200) {
         if (data.result.verdict.validationGranularity === "PREMISE") {
             reply.validatedAddress = data.result.address.formattedAddress;
             reply.placeId = data.result.geocode.placeId;
-            console.log(reply);
             return reply;
         } else {
             reply.validatedAddress = data.result.address.formattedAddress;
             reply.placeId = data.result.geocode.placeId;
-            console.log(reply);
             return reply;
         }
     } else {
@@ -52,7 +49,7 @@ const getDistance = async function(placeIdOne, placeIdTwo){
     const data = await response.json();
     if (data){
         const rawDistance = data.routes[0].legs[0].distance.text
-        const distance = parseInt((rawDistance.split(" ")[0]).split(",").join(""));
+        const distance = parseFloat((rawDistance.split(" ")[0]).split(",").join(""));
         return distance;
     }
 }
@@ -62,15 +59,3 @@ module.exports = {
     validateAddress,
     getDistance,
 }
-
-
-// const myAddress = {
-//     administrativeArea: "OH",
-//     locality: "Columbus",
-//     postalCode: "43214",
-//     addressLines: "5142 North High Street, Apt 212"
-// };
-// const placeIdOne = "ChIJXa11XvSrmlQR_IzMkY63fe4";
-// const placeIdTwo = "Ejw1MTQyIE5vcnRoIEhpZ2ggU3RyZWV0IEFwdCAyMTIsIENvbHVtYnVzLCBPSCA0MzIxNC0xNTQ2LCBVU0EiHxodChYKFAoSCeF-PF-BjTiIEavdy1eQr6WREgMyMTI";
-// validateAddress(myAddress);
-// getDistance(placeIdOne, placeIdTwo);

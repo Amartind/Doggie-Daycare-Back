@@ -3,42 +3,103 @@ const jwt = require("jsonwebtoken");
 const Owner = require('../models/Owner');
 const Pet = require('../models/Pet');
 const Meetup = require('../models/Meetup');
+const { getDistance } = require('../utilities/google');
 
-// Find all Meetups
+
+// Find all Meetups.
+// PROTECTED
 router.get('/', (req, res) => {
-  Meetup.findAll({
-    include: [
-      { model: Pet },
-      { model: Owner }
-    ]
-  }).then((meetupData) => {
-    res.json(meetupData);
-  });
+  const token = req.headers?.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(403).json({ msg: "User is not logged in." })
+  }
+  try {
+    Meetup.findAll({
+      include: [
+        { model: Pet },
+        { model: Owner }
+      ]
+    }).then((meetupData) => {
+      res.json(meetupData);
+    });
+  } catch (error) {
+    res.status(403).json({ msg: 'Unauthorized access' });
+  }
 });
 
-// Find Meetup by id
+
+// Find Meetup by id.
+// PROTECTED
 router.get('/:id', (req, res) => {
-  Meetup.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [
-      { model: Pet },
-      { model: Owner }
-    ]
-  }).then((meetupData) => {
-    res.json(meetupData);
-  });
+  const token = req.headers?.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(403).json({ msg: "User is not logged in." })
+  }
+  try {
+    Meetup.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        { model: Pet },
+        { model: Owner }
+      ]
+    }).then((meetupData) => {
+      res.json(meetupData);
+    });
+  } catch (error) {
+    res.status(403).json({ msg: 'Unauthorized access' });
+  }
 });
 
-// create a meetup PROTECTED
+
+// Find meetups within a certain radius of the user. 
+// PROTECTED.
+router.get('/:radius', (req, res) => {
+  const token = req.headers?.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(403).json({ msg: "User is not logged in." })
+  }
+  try {
+    const tokenData = jwt.verify(token, process.env.JWT_SECRET)
+    let ownerLocation;
+    let calculatedResult = []
+    Owner.findOne({
+      where: {
+        id: tokenData.userId
+      }
+    }).then((ownerData) => {
+      ownerLocation = ownerData.placeId;
+    })
+    Meetup.findAll({
+      include: [
+        { model: Pet },
+        { model: Owner }
+      ]
+    }).then(async (meetUpData) => {
+      for (const meetup of meetUpData) {
+        meetupLocation = meetup.dataValues.placeId
+        meetup.dataValues.distance = await getDistance(ownerLocation, meetupLocation)
+        if (meetup.dataValues.distance <= parseFloat(req.params.radius)) {
+          calculatedResult.push(meetup);
+        }
+      }
+      res.json(calculatedResult);
+    });
+  } catch (error) {
+    res.status(403).json({ msg: 'Unauthorized access' });
+  }
+});
+
+
+// create a meetup.
+// PROTECTED
 router.post("/", (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
     return res.status(403).json({ msg: "You must be logged in" })
   }
   try {
-    const tokenData = jwt.verify(token, process.env.JWT_SECRET);
     Meetup.create({
       address: req.body.address,
       lat: req.body.lat,
@@ -60,7 +121,9 @@ router.post("/", (req, res) => {
   }
 });
 
-// Update Meetup PROTECTED
+
+// Update Meetup.
+// PROTECTED
 router.put('/:id', (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
@@ -99,8 +162,8 @@ router.put('/:id', (req, res) => {
 });
 
 
-
-// Delete Meetup PROTECTED
+// Delete Meetup. 
+// PROTECTED
 router.delete('/:id', (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
