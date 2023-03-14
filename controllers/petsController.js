@@ -6,7 +6,10 @@ const { Pet, Owner } = require('../models');
 router.get('/', (req, res) => {
 
   Pet.findAll({
-    include: [Owner]
+    include: [
+      { model: Pet },
+      { model: Meetup }
+    ]
   }).then(data => {
     res.json(data)
   })
@@ -17,7 +20,10 @@ router.get('/:id', (req, res) => {
 
 
   Pet.findByPk(req.params.id, {
-    include: [Owner]
+    include: [
+      { model: Pet },
+      { model: Meetup }
+    ]
   }).then(data => {
     res.json(data)
   })
