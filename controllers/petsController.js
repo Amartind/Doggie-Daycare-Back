@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
   Pet.findAll({
     include: [Owner]
-  }).then(data => {
+  }).then((data) => {
     res.json(data)
   })
 });
