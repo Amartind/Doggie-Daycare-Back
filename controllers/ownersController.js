@@ -2,7 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
-const { Owner, Pet } = require("../models");
+const { Owner, Pet, Meetup } = require("../models");
 
 
 // Find all Owners
@@ -17,7 +17,10 @@ router.get("/", (req, res) => {
 // Find Owner by id
 router.get("/:id", (req, res) => {
   Owner.findByPk(req.params.id, {
-    include: [Pet],
+    include: [
+      { model: Pet },
+      { model: Meetup }
+    ]
   }).then((data) => {
     res.json(data);
   });
