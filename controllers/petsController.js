@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
   Pet.findAll({
     include: [
-      { model: Pet },
+      { model: Owner },
       { model: Meetup }
     ]
   }).then(data => {
@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 
   Pet.findByPk(req.params.id, {
     include: [
-      { model: Pet },
+      { model: Owner },
       { model: Meetup }
     ]
   }).then(data => {
