@@ -55,17 +55,18 @@ router.get('/:id', (req, res) => {
 
 // Find meetups within a certain radius of the user. 
 // PROTECTED.
-router.get('/:userId/:radius', (req, res) => {
+router.get('/:radius', (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
     return res.status(403).json({ msg: "User is not logged in." })
   }
   try {
+    const tokenData = jwt.verify(token, process.env.JWT_SECRET)
     let ownerLocation;
     let calculatedResult = []
     Owner.findOne({
       where: {
-        id: req.params.userId
+        id: tokenData.userId
       }
     }).then((ownerData) => {
       ownerLocation = ownerData.placeId;
