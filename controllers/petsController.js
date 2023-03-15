@@ -56,7 +56,7 @@ router.post("/", (req, res) => {
       OwnerId: tokenData.id
     })
       .then((newPet) => {
-        res.json({msg: "New pet created", newPet});
+       return res.json({msg: "New pet created", newPet});
       })
       .catch((err) => {
         console.log(err);
@@ -146,13 +146,8 @@ router.delete('/:id', (req, res) => {
           err,
         });
       });
-    }).catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        msg: "Error deleting pet",
-        err,
-      });
-      });
     })
+      });
+
 
 module.exports = router;
