@@ -108,12 +108,12 @@ router.post("/", (req, res) => {
       OwnerId: tokenData.id,
     })
       .then((newMeetup) => {
-        return res.json(msg: "New pet created", newMeetup);
+        return res.json(newMeetup);
       })
       .catch((err) => {
         console.log(err);
         return res.status(500).json({
-          msg: "error with creating new event", error,
+          msg: error,
           err,
         });
       });
@@ -171,10 +171,10 @@ router.delete('/:id', (req, res) => {
     const tokenData = jwt.verify(token, process.env.JWT_SECRET)
     Meetup.findByPk(req.params.id).then(foundMeetup => {
       if (!foundMeetup) {
-        return res.status(404).json({ msg: "Meetup not found", error })
+        return res.status(404).json({ msg: "Meetup not found"})
       }
       if (foundMeetup.OwnerId !== tokenData.id) {
-        return res.status(403).json({ msg: 'Unauthorized access', error })
+        return res.status(403).json({ msg: 'Unauthorized access',})
       }
       Meetup.destroy({
         where: {
