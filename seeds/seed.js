@@ -80,7 +80,7 @@ const meetups = [
         PetId: 2
     },
     {
-        name: 'God Frolick',
+        name: 'Dog Frolick',
         dateTime: '2023-03-20 12:30:00',
         description: "Let's just let the dogs run around!",
         address: "6046 West Lake Sammamish Pkwy NE, Redmond, WA 98052",
