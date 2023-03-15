@@ -56,7 +56,7 @@ router.post("/", (req, res) => {
       OwnerId: tokenData.id
     })
       .then((newPet) => {
-       return res.json({msg: "New pet created", newPet});
+       res.json({msg: "New pet created", newPet});
       })
       .catch((err) => {
         console.log(err);
