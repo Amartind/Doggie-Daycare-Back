@@ -171,4 +171,25 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+router.get("/isValidToken", (req, res) => {
+  const token = req.headers?.authorization?.split(" ")[1];
+  if (!token) {
+    return res
+      .status(403)
+      .json({ isValid: false, msg: "you must be logged in!" });
+  }
+  try {
+    const tokenData = jwt.verify(token,process.env.JWT_SECRET);
+    res.json({
+      isValid: true,
+      user: tokenData,
+    });
+  } catch (err) {
+    res.status(403).json({
+      isValid: false,
+      msg: "invalid token",
+    });
+  }
+});
+
 module.exports = router;
