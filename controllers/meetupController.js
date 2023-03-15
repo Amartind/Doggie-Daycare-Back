@@ -178,7 +178,7 @@ router.delete('/:id', (req, res) => {
       if (!foundMeetup) {
         return res.status(404).json({ msg: "Meetup not found" })
       }
-      if (foundMeetup.UserId !== tokenData.id) {
+      if (foundMeetup.OwnerId !== tokenData.id) {
         return res.status(403).json({ msg: 'Unauthorized access' })
       }
       Meetup.destroy({
@@ -193,7 +193,7 @@ router.delete('/:id', (req, res) => {
         .catch((err) => res.json(err));
     })
   } catch (error) {
-    return res.status(403).json({ msg: 'Unauthorized access' })
+    return res.status(403).json({ msg: error })
   }
 });
 
