@@ -14,10 +14,12 @@ Owner.hasMany(Meetup, {
 Meetup.belongsTo(Owner, {
     onDelete: "CASCADE"
 });
-Pet.hasMany(Meetup, {
+Pet.belongsToMany(Meetup, {
+    through:"PetMeetups",
     onDelete: "CASCADE"
 });
-Meetup.belongsTo(Pet, {
+Meetup.belongsToMany(Pet, {
+    through:"PetMeetups",
     onDelete: "CASCADE"
 });
 
