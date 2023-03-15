@@ -82,6 +82,7 @@ router.put('/:id', (req, res) => {
       if(foundPet.OwnerId!==tokenData.id){
         return res.status(403).json({msg:"Unauthorized access"})
       }
+      const tokenData = jwt.verify(token, process.env.JWT_SECRET)
       Pet.update({
         name: req.body.name,
         gender: req.body.gender,
@@ -89,10 +90,12 @@ router.put('/:id', (req, res) => {
         breed: req.body.breed,
         personality: req.body.personality,
         spayed_neutered: req.body.spayed_neutered,
-        vaccinated: req.body.vaccinated
+        vaccinated: req.body.vaccinated,
+        
       }, {
         where: {
-          id: req.params.id
+          id: req.params.id,
+          OwnerId: tokenData.id
         }
       }).then(data => {
         res.json({ msg: 'Pet has been edited', data })
@@ -131,7 +134,8 @@ router.delete('/:id', (req, res) => {
       }
       Pet.destroy({
         where: {
-          id: req.params.id
+          id: req.params.id,
+          OwnerId: tokenData.id
         }
       }).then(data => {
         res.json({ msg: 'Pet has been deleted', data })
