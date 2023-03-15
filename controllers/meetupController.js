@@ -100,7 +100,8 @@ router.post("/", (req, res) => {
     return res.status(403).json({ msg: "You must be logged in" })
   }
   const tokenData = jwt.verify(token, process.env.JWT_SECRET);
-    Meetup.create({
+  try {  
+  Meetup.create({
       name: req.body.name,
       dateTime: req.body.dateTime,
       description: req.body.description,
@@ -113,10 +114,13 @@ router.post("/", (req, res) => {
       .catch((err) => {
         console.log(err);
         return res.status(500).json({
-          msg: error,
+          msg: err,
           err,
         });
       });
+  } catch (error) {
+    return res.status(403).json({ msg: err });
+  }
 });
 
 
