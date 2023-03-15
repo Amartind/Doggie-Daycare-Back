@@ -2,9 +2,13 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const { Pet, Owner, Meetup } = require('../models');
 
-// Get all 
+// Get all pets.
+// PROTECTED
 router.get('/', (req, res) => {
-
+  const token = req.headers?.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(403).json({ msg: "You must be logged in" })
+  }
   Pet.findAll({
     include: [
       { model: Owner },
@@ -15,10 +19,13 @@ router.get('/', (req, res) => {
   })
 });
 
-// Find pet by id
+// Find pet by id.
+// PROTECTED
 router.get('/:id', (req, res) => {
-
-
+  const token = req.headers?.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(403).json({ msg: "You must be logged in" })
+  }
   Pet.findByPk(req.params.id, {
     include: [
       { model: Owner },
@@ -30,7 +37,8 @@ router.get('/:id', (req, res) => {
 }
 );
 
-// Create a pet PROTECTED
+// Create a pet.
+// PROTECTED
 router.post("/", (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
@@ -59,7 +67,8 @@ router.post("/", (req, res) => {
       });
     });
 
-// Update pet PROTECTED
+// Update pet.
+// PROTECTED
 router.put('/:id', (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
@@ -105,7 +114,8 @@ router.put('/:id', (req, res) => {
 
 
 
-// Delete pet PROTECTED
+// Delete pet.
+// PROTECTED
 router.delete('/:id', (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
