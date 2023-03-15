@@ -100,7 +100,6 @@ router.post("/", (req, res) => {
     return res.status(403).json({ msg: "You must be logged in" })
   }
   const tokenData = jwt.verify(token, process.env.JWT_SECRET);
-  try {
     Meetup.create({
       name: req.body.name,
       dateTime: req.body.dateTime,
@@ -109,18 +108,15 @@ router.post("/", (req, res) => {
       OwnerId: tokenData.id,
     })
       .then((newMeetup) => {
-        return res.json(newMeetup);
+        return res.json(msg: "New pet created", newMeetup);
       })
       .catch((err) => {
         console.log(err);
         return res.status(500).json({
-          msg: "Error creating new Meetup",
+          msg: "error with creating new event", error,
           err,
         });
       });
-  } catch (error) {
-    return res.status(403).json({ msg: 'Unauthorized access' });
-  }
 });
 
 
@@ -172,14 +168,13 @@ router.delete('/:id', (req, res) => {
   if (!token) {
     return res.status(403).json({ msg: "You must be logged in" })
   }
-  try {
     const tokenData = jwt.verify(token, process.env.JWT_SECRET)
     Meetup.findByPk(req.params.id).then(foundMeetup => {
       if (!foundMeetup) {
-        return res.status(404).json({ msg: "Meetup not found" })
+        return res.status(404).json({ msg: "Meetup not found", error })
       }
       if (foundMeetup.OwnerId !== tokenData.id) {
-        return res.status(403).json({ msg: 'Unauthorized access' })
+        return res.status(403).json({ msg: 'Unauthorized access', error })
       }
       Meetup.destroy({
         where: {
@@ -192,9 +187,6 @@ router.delete('/:id', (req, res) => {
         })
         .catch((err) => res.json(err));
     })
-  } catch (error) {
-    return res.status(403).json({ msg: error })
-  }
 });
 
 module.exports = router;
