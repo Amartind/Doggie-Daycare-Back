@@ -48,9 +48,13 @@ const getDistance = async function(placeIdOne, placeIdTwo){
     const response = await fetch(directionsUrl, {method: "POST"});
     const data = await response.json();
     if (data){
+        console.log(data);
         const rawDistance = data.routes[0].legs[0].distance.text
         const distance = parseFloat((rawDistance.split(" ")[0]).split(",").join(""));
+        console.log(distance)
         return distance;
+    } else {
+        return null;
     }
 }
 
