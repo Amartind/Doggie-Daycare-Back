@@ -101,10 +101,10 @@ router.post("/", (req, res) => {
   }
   try {
     Meetup.create({
+      name: req.body.name,
+      dateTime: req.body.dateTime,
+      description: req.body.description,
       address: req.body.address,
-      lat: req.body.lat,
-      lon: req.body.lon,
-      date: req.body.date,
     })
       .then((newMeetup) => {
         res.json(newMeetup);
