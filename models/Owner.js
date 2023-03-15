@@ -55,6 +55,10 @@ Owner.init({
                 const location = await validateAddress(user.address);
                 user.placeId = location.placeId;
             }
+        },
+        beforeUpdate: async userObj => {
+            userObj.password = bcrypt.hashSync(userObj.password, 4);
+            return userObj;
         }
     }});
 
