@@ -55,7 +55,7 @@ router.get('/:id', (req, res) => {
 
 // Find meetups within a certain radius of the user. 
 // PROTECTED.
-router.get('/:radius', (req, res) => {
+router.get('/search/:radius', (req, res) => {
   const token = req.headers?.authorization?.split(" ")[1];
   if (!token) {
     return res.status(403).json({ msg: "User is not logged in." })
@@ -66,7 +66,7 @@ router.get('/:radius', (req, res) => {
     let calculatedResult = []
     Owner.findOne({
       where: {
-        id: tokenData.userId
+        id: tokenData.id
       }
     }).then((ownerData) => {
       ownerLocation = ownerData.placeId;
