@@ -1,21 +1,16 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const { Pet, Owner } = require('../models');
+const { Pet, Owner, Meetup } = require('../models');
 
 // Get all 
 router.get('/', (req, res) => {
 
   Pet.findAll({
-<<<<<<< HEAD
-    include: [Owner]
-  }).then((data) => {
-=======
     include: [
       { model: Owner },
       { model: Meetup }
     ]
   }).then(data => {
->>>>>>> dev
     res.json(data)
   })
 });
